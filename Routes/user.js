@@ -26,10 +26,20 @@ router.post('/register',async (req,res)=>{
 
 router.post('/signin',async(req,res)=>{
     const {email,password}= req.body;
-    const user=await User.checkPassword(email,password)
+    try{
+        const token=await User.checkPasswordAndGenerateToken(email,password)
+        res.cookie("token",token).redirect('/')
+    }catch(err){
+        res.render('signin.ejs',{
+            error:"password or username is incorrect"
+        })
+    }
+    
+
+ 
 
 
-    res.redirect('/')
+   
 })
 
 module.exports= router
