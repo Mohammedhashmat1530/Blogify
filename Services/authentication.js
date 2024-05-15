@@ -7,7 +7,8 @@ function createTokenforUser(user){
         _id:user._id,
         email: user.email,
         profileImageURL: user.profileImageURL,
-        role : user.role
+        role : user.role,
+        name:user.fullName.split(' ')
     }
 
 

@@ -10,6 +10,10 @@ router.get('/register',(req,res)=>{
     res.render('register.ejs')
 })
 
+router.get('/logout',(req,res)=>{
+    res.clearCookie('token').redirect('/')
+})
+
 router.post('/register',async (req,res)=>{
     const {fullName,email,password} = req.body;
 
