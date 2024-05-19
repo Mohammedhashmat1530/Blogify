@@ -20,9 +20,9 @@
                 <a class="text-gray-500 transition hover:text-gray-500/75 font-medium " href="#"> About </a>
               </li>
   
-              <% if(locals?.user){ %>
+              <% if(locals.user){ %>
                 <li>
-                  <a class="text-gray-500 transition hover:text-gray-500/75 font-medium" href="#"> Blogs </a>
+                  <a class="text-gray-500 transition hover:text-gray-500/75 font-medium" href="/blog/all-blogs"> Blogs </a>
                 </li>
              
                 <% } %>
@@ -34,7 +34,7 @@
               
               <% if(locals?.user){ %>
                 <li>
-                  <a class="text-gray-800 transition hover:text-gray-800/75 font-medium" href="#"> <%= user?.name[1]  %></a>
+                  <a class="text-gray-800 transition hover:text-gray-800/75 font-medium" href="#"> <%= user.name[1]  %></a>
                 </li>
              
                 <% } %>
@@ -46,7 +46,7 @@
           <div class="flex items-center gap-4">
             <div class="sm:flex sm:gap-4">
 
-              <% if(locals?.user){ %>
+              <% if(locals.user){ %>
                 <a
                 class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
                 href="/user/logout"

@@ -36,7 +36,17 @@ router.post('/',upload.single("fileupload"),async (req,res)=>{
     })
   
     
-    res.redirect('/')
+    res.redirect('/blog/all-blogs')
+})
+
+
+router.get('/all-blogs',async(req,res)=>{
+    const blogs = await Blog.find()
+    res.render('blogs.ejs',{
+        blogs,
+        user:req.user
+    });
+
 })
 
 module.exports= router

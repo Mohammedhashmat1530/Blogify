@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
 app.use(cookieParser())
 app.use(checkForAuthenicationCookies('token'))
+app.use(express.static(path.resolve('./public')))
 
 
 app.set('view engine','ejs');

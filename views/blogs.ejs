@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+
+       
+            <section class="bg-white dark:bg-gray-900">
+                <div class="container px-6 py-10 mx-auto">
+                    <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">From the
+                        blog</h1>
+
+                    <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+                        <% blogs.map((blog)=>{   %>
+
+                                
+                                    <div class="lg:flex bg-white text-gray-800">
+                                        <img class="object-cover w-full h-56 rounded-lg lg:w-64"
+                                            src="<%= blog.coverImageURL == '/uploads/default' ? 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' : blog.coverImageURL %>"
+                                            alt="<%= blog.coverImageURL %>">
+
+                                        <div class="flex flex-col justify-between py-6 lg:mx-6">
+                                            <a href="#"
+                                                class="text-xl font-semibold text-gray-900 hover:underline font-medium ">
+                                                <%= blog.title %>
+                                            </a>
+
+                                            <span class="text-sm text-red-800  font-semibold">On: <%=
+                                                    blog.updatedAt.toString().substring(4,15) %></span>
+                                        </div>
+                                    </div>
+                                   
+
+
+
+                                        <% }) %>
+                    </div>
+                </div>
+            </section>
+</body>
+
+</html>
