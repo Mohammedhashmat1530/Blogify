@@ -1,5 +1,6 @@
 const express = require('express');
 const userRoute = require('./Routes/user')
+const blogRoute = require('./Routes/blog')
 
 const path= require('path');
 const mongoose = require('mongoose');
@@ -29,6 +30,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/user',userRoute)
+app.use('/blog',blogRoute)
 app.listen(PORT,()=>{
     console.log('the server is running on port 8000')
 })
