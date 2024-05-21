@@ -18,7 +18,7 @@
        <div class="max-w-6xl px-10 py-6 mx-auto bg-gray-50 ">
           
           <a href="#_" class="block transition duration-200 ease-out transform hover:scale-110 h-1/2">
-              <img class="bg-cover w-full shadow-sm h-96" src="<%= data[0].coverImageURL %>">
+              <img class="bg-cover w-full shadow-sm h-96" src="<%= data[0].coverImageURL == '/uploads/default' ? 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' : data[0].coverImageURL %>"
           </a>
 
           

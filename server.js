@@ -1,6 +1,6 @@
 const express = require('express');
 const userRoute = require('./Routes/user')
-const blogRoute = require('./Routes/blog')
+const blogRoute = require('./Routes/blog');
 
 const path= require('path');
 const mongoose = require('mongoose');
