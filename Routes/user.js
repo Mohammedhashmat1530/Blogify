@@ -1,6 +1,6 @@
 const express = require('express');
 const User = require('../Models/user')
-const router = express.Router();
+const router = express.Router()
 
 router.get('/signin',(req,res)=>{
     res.render('signin.ejs')
