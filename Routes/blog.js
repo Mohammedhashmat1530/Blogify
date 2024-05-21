@@ -42,11 +42,23 @@ router.post('/',upload.single("fileupload"),async (req,res)=>{
 
 router.get('/all-blogs',async(req,res)=>{
     const blogs = await Blog.find()
+   
     res.render('blogs.ejs',{
         blogs,
         user:req.user
     });
 
+})
+
+router.get('/:id',async(req,res)=>{
+    const id = req.params.id
+    const data = await Blog.find({_id:id}).populate('createdBy')
+    console.log("data is ",data)
+    
+    res.render('blog.ejs',{
+        user:req.user,
+        data:data
+    })
 })
 
 module.exports= router
