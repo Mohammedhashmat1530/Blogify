@@ -22,10 +22,12 @@
       <a href="#" class="inline-block underline"></a>
     </p>
   </div>
+  <% if(locals?.user){ %>
 <header class="bg-gray-50">
   <div class="mx-auto max-w-screen-xl px-2 py-4 sm:px-3 sm:py-6 lg:px-4">
     <div class="sm:flex sm:items-center sm:justify-between">
       <div class="text-center sm:text-left">
+
         <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Welcome Back, <%= user?.name[1] %></h1>
 
         <p class="mt-1.5 text-sm text-gray-500">Let's write a new blog post! 🎉</p>
@@ -44,7 +46,139 @@
     </div>
   </div>
 </header>
+<% } %>
+<div class="mt-10">
+ 
+<section class="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2">
+  <div class="p-8 md:p-12 lg:px-16 lg:py-24">
+    <div class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+      <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
+        Global Voices: <span class="text-orange-600">Share Your Stories</span> with the World
+      </h2>
+
+      <p class="hidden text-gray-500 md:mt-4 md:block">
+        Blogify is a platform where your experiences come to life. Join our community, share your stories, and connect with people worldwide. Inspire and be inspired through the power of storytelling. Sign up today and let your voice be heard!
+      </p>
+
+      <div class="mt-4 md:mt-8">
+        <a
+          href="#"
+          class="inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+        >
+          Get Started Today
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <img
+    alt=""
+    src="https://images.pexels.com/photos/4549414/pexels-photo-4549414.jpeg?auto=compress&cs=tinysrgb&w=600"
+    class="h-56 w-full object-cover sm:h-full"
+  />
+</section>
+
+</div>
+<h3 class="text-2xl font-bold text-gray-900 md:text-3xl m-10">Frequent Questions asked</h3>
+<div class=" w-2/3 m-auto mt-4">
+  
+  <div class="space-y-4">
+    <details class="group [&_summary::-webkit-details-marker]:hidden" open>
+      <summary
+        class="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900"
+      >
+        <h2 class="font-medium">Is this project open-source?</h2>
+  
+        <svg
+          class="size-5 shrink-0 transition duration-300 group-open:-rotate-180"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+  
+      <p class="mt-4 px-4 leading-relaxed text-gray-700">
+        Yes,This project is open-source and i strongly encourage developers to fork this project and solve the issues and send PR.
+        <a href="https://github.com/Mohammedhashmat1530/Blogify" class="text-blue-500 underline-offset-1" >Link to this Github Codebase.🧑‍💻</a>
+      </p>
+    </details>
+  
+    <details class="group [&_summary::-webkit-details-marker]:hidden">
+      <summary
+        class="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900"
+      >
+        <h2 class="font-medium">Is my signup data safe here in this website?</h2>
+  
+        <svg
+          class="size-5 shrink-0 transition duration-300 group-open:-rotate-180"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+  
+      <p class="mt-4 px-4 leading-relaxed text-gray-700">
+        Yes, ur sign up data is completely safe with us because we have hashed your password and stored in database.
+        No need to worry about that and start sharing your experiences to the world in blogify
+
+      </p>
+    </details>
+     <details class="group [&_summary::-webkit-details-marker]:hidden">
+      <summary
+        class="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900"
+      >
+        <h2 class="font-medium">Can I embed images or videos in my posts??</h2>
+  
+        <svg
+          class="size-5 shrink-0 transition duration-300 group-open:-rotate-180"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+  
+      <p class="mt-4 px-4 leading-relaxed text-gray-700">
+        Yes, you can embed images in ur post 
+        currently we are developing the feature to upload images
+
+      </p>
+    </details>
+  </details>
+  <details class="group [&_summary::-webkit-details-marker]:hidden">
+   <summary
+     class="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900"
+   >
+     <h2 class="font-medium">Your questions not present here?</h2>
+
+     <svg
+       class="size-5 shrink-0 transition duration-300 group-open:-rotate-180"
+       xmlns="http://www.w3.org/2000/svg"
+       fill="none"
+       viewBox="0 0 24 24"
+       stroke="currentColor"
+     >
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+     </svg>
+   </summary>
+
+   <p class="mt-4 px-4 leading-relaxed text-gray-700">
+     No problem, send ur request to hashmat2020vskp@gmail.com and i sure will respond immediately.😃
+   </p>
+ </details>
+  </div>
 </div>
 
+
+
 </body>
+<script type='text/javascript'>document.addEventListener('DOMContentLoaded', function () {window.setTimeout(document.querySelector('svg').classList.add('animated'),1000);})</script>
 </html>
