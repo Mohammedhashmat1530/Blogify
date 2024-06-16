@@ -5,7 +5,7 @@ const blogRoute = require('./Routes/blog');
 const path= require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const { checkForAuthenicationCookies } = require('./Middlewares/authenication');
+const { checkForAuthenicationCookies,requireAuth } = require('./Middlewares/authenication');
 
 
 const app = express();
@@ -31,7 +31,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/user',userRoute)
-app.use('/blog',blogRoute)
+app.use('/blog',requireAuth,blogRoute)
 app.listen(PORT,()=>{
     console.log('the server is running on port 8000')
 })
