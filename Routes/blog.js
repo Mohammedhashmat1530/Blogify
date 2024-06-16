@@ -53,11 +53,16 @@ router.get('/all-blogs',async(req,res)=>{
 router.get('/:id',async(req,res)=>{
     const id = req.params.id
     const data = await Blog.find({_id:id}).populate('createdBy')
-    console.log("data is ",data)
+    const randomBlogs = await Blog.aggregate([
+        { $match: { _id: { $ne: id } } },
+        { $sample: { size: 3 } }
+    ]);
+   
     
     res.render('blog.ejs',{
         user:req.user,
-        data:data
+        data:data,
+        randomBlogs:randomBlogs
     })
 })
 

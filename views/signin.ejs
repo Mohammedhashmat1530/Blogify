@@ -10,7 +10,7 @@
 
 <body>
  
-    <div class="h-screen overflow-hidden">
+    <div class="h-screen ">
     <%- include('./partials/header.ejs') %>
         <!--
   Heads up! 👋
@@ -101,16 +101,21 @@
               </button>
   
               <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-                Already have an account?
-                <a href="#" class="text-gray-700 underline">Log in</a>.
+                New to Blogify? 
+                <a href="/user/register" class="text-gray-700 underline">Register now</a>.
               </p>
             </div>
           </form>
         </div>
       </main>
     </div>
+    <div class="">
+      <%- include('./partials/homefooter.ejs') %>
+    </div>
   </section>
+  
 </div>
+
 </body>
 
 </html>
