@@ -5,6 +5,7 @@ const router = express.Router();
 
 
 const Blog = require('../Models/blogs')
+const Comment = require('../Models/comment')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -50,9 +51,20 @@ router.get('/all-blogs',async(req,res)=>{
 
 })
 
+router.post('/:id',async (req,res)=>{
+    const comment =  Comment.create({
+        body:req.body.comment,
+        blogId:req.params.id,
+        createdBy:req.user._id
+    })
+    console.log(comment)
+    return res.redirect(`/blog/${req.params.id}`)
+})
+
 router.get('/:id',async(req,res)=>{
     const id = req.params.id
     const data = await Blog.find({_id:id}).populate('createdBy')
+    const comments = await Comment.find({blogId:id}).populate('createdBy')
     const randomBlogs = await Blog.aggregate([
         { $match: { _id: { $ne: id } } },
         { $sample: { size: 3 } }
@@ -62,7 +74,8 @@ router.get('/:id',async(req,res)=>{
     res.render('blog.ejs',{
         user:req.user,
         data:data,
-        randomBlogs:randomBlogs
+        randomBlogs:randomBlogs,
+        comments:comments
     })
 })
 

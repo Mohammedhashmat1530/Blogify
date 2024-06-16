@@ -20,8 +20,8 @@ function checkForAuthenicationCookies(cookieName){
     }
 }
 
-function requireAuth(req, res, next) {
-    if (!req.user) {
+function requireAuth(req, res, next){
+    if (!req.user){
         return res.redirect('/user/signin'); // Redirect to sign-in page if not authenticated
     }
     next();

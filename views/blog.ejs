@@ -50,8 +50,8 @@
    <div class="max-w-4xl px-10  mx-auto text-2xl text-gray-700 mt-4 rounded bg-gray-100">
 
        <!--content body-->
-       <div >
-              <p class="mt-2 p-8 "><%= data[0].body %></p>
+       <div class="w-full">
+              <pre class="mt-2 p-8 whitespace-normal"><%= data[0].body %></pre>
        </div>
 
         </div>
@@ -88,7 +88,7 @@
 <div class="max-w-4xl py-16 xl:px-8 flex justify-center mx-auto">
                   
   <div class="w-full mt-16 md:mt-0 ">
-     <form class="relative z-10 h-auto p-8 py-10 overflow-hidden bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7">
+     <form method="post" action="/blog/<%= data[0]._id %>" class="relative z-10 h-auto p-8 py-10 overflow-hidden bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7">
          <h3 class="mb-6 text-2xl font-medium text-center">Write a comment</h3>
          <textarea type="text" name="comment" class="w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none" placeholder="Write your comment" rows="5" cols="33"></textarea>
          <input type="submit" value="Submit comment" name="submit" class=" text-white px-4 py-3 bg-blue-500  rounded-lg">
@@ -105,31 +105,22 @@
       All comments on this post
   </p>
   <!--comment 1-->
-  <div class="flex  items-center w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 rounded-lg sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3">
-
-      <a href="#" class="flex items-center mt-6 mb-6 mr-6"><img src="https://avatars.githubusercontent.com/u/71964085?v=4" alt="avatar" class="hidden object-cover w-14 h-14 mx-4 rounded-full sm:block">
-      </a>
-
-      <div><h3 class="text-lg font-bold text-purple-500 sm:text-xl md:text-2xl">By James Amos</h3>
-          <p class="text-sm font-bold text-gray-300">August 22,2021</p>
-          <p class="mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
-         Keep working</p>
-      </div>
-      
-  </div>
-  <!--comment 2-->
-  <div class="flex  items-center w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 rounded-lg sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3">
-
-    <a href="#" class="flex items-center mt-6 mb-6 mr-6"><img src="<%= data[0].createdBy.profileImageURL %>" alt="avatar" class="hidden object-cover w-14 h-14 mx-4 rounded-full sm:block">
-    </a>
-
-    <div><h3 class="text-lg font-bold text-purple-500 sm:text-xl md:text-2xl"><%= data[0].createdBy.fullName.split(' ')[1] %></h3>
-        <p class="text-sm font-bold text-gray-300">August 22,2021</p>
-        <p class="mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
-       Good work </p>
+  <% for(var i=0; i<comments.length; i++) {%>
+    <div class="flex  items-center w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 rounded-lg sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3">
+  
+        <a href="#" class="flex items-center mt-6 mb-6 mr-6"><img src="<%= data[0].createdBy.profileImageURL %>" alt="avatar" class="hidden object-cover w-14 h-14 mx-4 rounded-full sm:block">
+        </a>
+  
+        <div><h3 class="text-lg font-bold text-purple-500 sm:text-xl md:text-2xl">By <%= comments[i].createdBy.fullName %></h3>
+            <p class="text-sm font-bold text-gray-300">August 22,2021</p>
+            <p class="mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
+           <%= comments[i].body %></p>
+        </div>
+        
     </div>
-    
-</div>
+    <% }  %>
+  <!--comment 2-->
+
 
 </div>
 </div>
