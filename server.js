@@ -25,8 +25,10 @@ app.set('views',path.resolve('./views'))
 
 
 app.get('/',(req,res)=>{
+    const additionalInfo = req.cookies['Info'];
     res.render('home.ejs',{
-        user:req.user
+        user:req.user,
+        additionalInfo
     })
 })
 
