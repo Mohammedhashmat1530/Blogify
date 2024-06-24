@@ -36,7 +36,9 @@ app.use('/user',userRoute)
 app.use('/blog',requireAuth,blogRoute)
 
 app.get('/about',(req,res)=>{
-    res.render('about.ejs')
+    res.render('about.ejs',{
+        user:req.user
+    })
 })
 app.listen(PORT,()=>{
     console.log('the server is running on port 8000')
