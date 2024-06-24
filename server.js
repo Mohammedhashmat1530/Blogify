@@ -14,10 +14,11 @@ const PORT = 8000;
 mongoose.connect('mongodb+srv://admin:admin1@cluster0.6xkdff5.mongodb.net/').then((e)=> console.log("mongodb Connected"))
 
 app.use(express.urlencoded({ extended: false }));
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(checkForAuthenicationCookies('token'))
-app.use(express.static(path.resolve('./public')))
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.set('view engine','ejs');
