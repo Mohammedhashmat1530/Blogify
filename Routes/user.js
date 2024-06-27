@@ -13,6 +13,10 @@ router.get('/register',(req,res)=>{
     res.render('register.ejs')
 })
 
+router.get('/profile/update',(req,res)=>{
+    res.render('updateProfile.ejs')
+})
+
 router.get('/logout',(req,res)=>{
     res.clearCookie('token')
     res.clearCookie('Info')
@@ -39,6 +43,7 @@ router.post('/signin',async(req,res)=>{
     const additionalInfo = "login Successful!👍"
     try{
         const token=await User.checkPasswordAndGenerateToken(email,password)
+        console.log(token)
         res.cookie("Info",additionalInfo,{maxAge:1000})
         res.cookie("token",token).redirect('/')
     }catch(err){

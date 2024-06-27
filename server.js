@@ -6,6 +6,7 @@ const path= require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { checkForAuthenicationCookies,requireAuth } = require('./Middlewares/authenication');
+const { details } = require('./Controllers/userdetails');
 
 
 const app = express();
@@ -39,6 +40,15 @@ app.use('/blog',requireAuth,blogRoute)
 app.get('/about',(req,res)=>{
     res.render('about.ejs',{
         user:req.user
+    })
+})
+
+app.get('/profile',async(req,res)=>{
+    const userDetails = await details(req.user._id)
+    console.log(userDetails)
+    res.render('profile.ejs',{
+        user:req.user,
+        profileDetails:userDetails
     })
 })
 app.listen(PORT,()=>{
