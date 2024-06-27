@@ -11,7 +11,7 @@
 
     
     <div class="m-16 flex">
-      <div >
+      <div class="w-2/3">
           <div class="flex justify-between items-center">
         <h2 class="text-2xl font-medium text-gray-700"><span class="text-red-800">User Profile</span> Details</h2>
         <button
@@ -48,9 +48,9 @@
           
               <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-red-800">Bio</dt>
-                <dd class="text-gray-700 sm:col-span-2">
-                    <% if (profileDetails[0]?.Bio) { %>
-                        hi
+                <dd class="text-blue-700 sm:col-span-2 font-semibold">
+                    <% if (profileDetails[0]?.bio) { %>
+                      <%= profileDetails[0].bio %>
                       <% } else { %>
                         <h4 class="hover:underline font-semibold">Edit your bio</h4>
                       <% } %>

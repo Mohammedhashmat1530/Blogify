@@ -1,6 +1,21 @@
 const express = require('express');
-const User = require('../Models/user')
-const router = express.Router()
+const User = require('../Models/user');
+const multer = require("multer");
+const { details } = require('../Controllers/userdetails');
+const router = express.Router();
+const path = require('path')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.resolve(`./public/profileuploads/`));
+    },
+    filename: function (req, file, cb) {
+      const fileName = `${Date.now()}-${file.originalname}`;
+      cb(null, fileName);
+    },
+  });
+  
+  const upload = multer({ storage: storage });
 
 router.get('/signin',(req,res)=>{
     const additionalInfo = req.cookies['Info'];
@@ -13,8 +28,33 @@ router.get('/register',(req,res)=>{
     res.render('register.ejs')
 })
 
-router.get('/profile/update',(req,res)=>{
-    res.render('updateProfile.ejs')
+router.get('/profile/update',async (req,res)=>{
+    const userDetails = await details(req.user._id)
+    console.log(userDetails)
+    res.render('updateProfile.ejs',{
+        user:req.user,
+        userDetails
+    })
+})
+
+router.post('/profile/update/complete',upload.single("proflephoto"),async (req,res)=>{
+    const {name,bio,email,role} = req.body;
+    const file = req.file && req.file.filename ? req.file.filename : "default"
+    const id= req.user._id
+
+    const userUpdate = await User.updateOne({ _id: id }, 
+        { 
+            fullName: name,
+            email:email,
+            role:role,
+            bio:bio,
+            updatedAt:Date.now(),
+            profileImageURL:`/profileuploads/${file}` 
+        })
+
+  
+    
+    res.redirect('/profile')
 })
 
 router.get('/logout',(req,res)=>{

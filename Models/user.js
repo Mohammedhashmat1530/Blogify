@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { createHmac, randomBytes } = require('crypto');
 const { createTokenforUser } = require('../Services/authentication');
+const { type } = require('os');
 
 const userSchema = new mongoose.Schema(
     {
@@ -29,6 +30,10 @@ const userSchema = new mongoose.Schema(
             type: String,
             enum: ['USER', 'ADMIN'],
             default: "USER"
+        },
+        bio:{
+            type:String,
+            default:""
         }
     },
     { timestamps: true }
