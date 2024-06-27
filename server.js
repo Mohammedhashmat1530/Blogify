@@ -45,7 +45,7 @@ app.get('/about',(req,res)=>{
 
 app.get('/profile',async(req,res)=>{
     const userDetails = await details(req.user._id)
-    console.log(userDetails)
+
     res.render('profile.ejs',{
         user:req.user,
         profileDetails:userDetails

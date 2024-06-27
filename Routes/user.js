@@ -3,7 +3,8 @@ const User = require('../Models/user');
 const multer = require("multer");
 const { details } = require('../Controllers/userdetails');
 const router = express.Router();
-const path = require('path')
+const path = require('path');
+const { uploadImage } = require('../utils/cloudinary');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -30,7 +31,6 @@ router.get('/register',(req,res)=>{
 
 router.get('/profile/update',async (req,res)=>{
     const userDetails = await details(req.user._id)
-    console.log(userDetails)
     res.render('updateProfile.ejs',{
         user:req.user,
         userDetails
@@ -40,7 +40,9 @@ router.get('/profile/update',async (req,res)=>{
 router.post('/profile/update/complete',upload.single("proflephoto"),async (req,res)=>{
     const {name,bio,email,role} = req.body;
     const file = req.file && req.file.filename ? req.file.filename : "default"
-    const id= req.user._id
+    const id= req.user._id;
+
+    const fileUrl = await uploadImage(req.file.path)
 
     const userUpdate = await User.updateOne({ _id: id }, 
         { 
@@ -49,11 +51,8 @@ router.post('/profile/update/complete',upload.single("proflephoto"),async (req,r
             role:role,
             bio:bio,
             updatedAt:Date.now(),
-            profileImageURL:`/profileuploads/${file}` 
+            profileImageURL:fileUrl.url
         })
-
-  
-    
     res.redirect('/profile')
 })
 
@@ -83,7 +82,6 @@ router.post('/signin',async(req,res)=>{
     const additionalInfo = "login Successful!👍"
     try{
         const token=await User.checkPasswordAndGenerateToken(email,password)
-        console.log(token)
         res.cookie("Info",additionalInfo,{maxAge:1000})
         res.cookie("token",token).redirect('/')
     }catch(err){
